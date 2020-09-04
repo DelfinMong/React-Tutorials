@@ -4,7 +4,7 @@ import { render } from "react-dom";
 class Counter extends Component {
     state = {
         score = 0 
-    }
+    };
 
 
 incrementScore = () => {
@@ -19,12 +19,12 @@ decrementScore = () => {
     }));
 }
 
-render () {
+render() {
     return (
         <div className="counter">
-          <button className="counter-action decrement"></button>
-          <span className="counter-score"></span>
-          <button className="counter-action increment"></button>
+          <button className="counter-action decrement" onClick={ this.decrementScore }> - </button>
+          <span className="counter-score">{ this.state.score }</span>
+          <button className="counter-action increment" onClick={ this.incrementScore }> + </button>
         </div>
     )
   }
