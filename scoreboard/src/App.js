@@ -67,4 +67,7 @@ State that is specific to a component and not shared outside of the compenent
    Application State
 Data that is available to the entire application
 
+git commit --amend --reset-author
+
 */
+
