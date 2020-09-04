@@ -1,13 +1,14 @@
-import React from 'react';
-import Player from './Player';
+import React, { Component } from 'react';
 import Header from './Header';
-import { render } from 'react-dom';
+import Player from './Player';
 
 
-class App extends React.Component {
+
+
+class App extends Component {
 
     state = {
-        player : [
+        players : [
           {
             name:'Guil',
             id: 1
@@ -30,7 +31,7 @@ class App extends React.Component {
     handleRemovePlayer = (id) => {
       this.setState( prevState => {
           return {
-            Players: prevState.Players.filter( p => p.id != id )
+            Players: prevState.players.filter( p => p.id !== id )
         };
       })
     }
@@ -38,13 +39,13 @@ class App extends React.Component {
     render() {
     return (
       <div className="scoreboard">
-        <header 
-           title = 'Scoreboard' 
-           totalPlayers = { this.state.Players.length} 
+        <Header 
+           title = {'Scoreboard'} 
+           totalPlayers = { this.state.players.length} 
         />
         
         {/* Players list */}
-        {this.state.Players.map(player =>
+        {this.state.players.map( player =>
         <Player 
            name = { player.name } 
            id = { player.id }

@@ -1,20 +1,19 @@
-import React,{Component} from "react";
-import { render } from "react-dom";
+import React, { Component }from "react";
 
 class Counter extends Component {
     state = {
-        score = 0 
+        score: 0 
     };
 
 
 incrementScore = () => {
-    this.state( prevState => ({
+    this.setstate( prevState => ({
        score: prevState.score + 1
     }));
 }
 
 decrementScore = () => {
-    this.state( prevState => ({
+    this.setstate( prevState => ({
        score: prevState.score - 1 
     }));
 }
