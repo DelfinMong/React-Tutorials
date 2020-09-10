@@ -3,7 +3,8 @@ import Pokecard from './Pokecard';
 
 
 class Pokedex extends Component {
-    static defaultPtops = {
+    // default static props
+    static defaultProps = {
         pokemon : [
 			{ id: 4, name: 'Charmander', type: 'fire', base_experience: 62 },
 			{ id: 7, name: 'Squirtle', type: 'water', base_experience: 63 },
@@ -14,17 +15,19 @@ class Pokedex extends Component {
 			{ id: 94, name: 'Gengar', type: 'poison', base_experience: 225 },
 			{ id: 133, name: 'Eevee', type: 'normal', base_experience: 65 }
 		]
-    }
+    };
     
     render() {
         return (
             <div className="Pokedex">
                 <h1>Pokedex!</h1>
-                {
-                    
-                }
+                
+                  {this.props.pokemon.map((p) => (
+                      <Pokecard id={p.id} name={p.name} type={p.type} exp={p.base_experience} />
+                  ))}  
+                
             </div>
-        )
+        );
     }
 }
 
