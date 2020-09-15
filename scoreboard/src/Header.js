@@ -1,10 +1,11 @@
 import React from 'react';
+import Stats from './Stats';
 
-const Header = ( {title, totalPlayers} ) => {
+const Header = (props) => {
     return (
         <header>
-            <h1>{ title }</h1>
-            <span className='stats'> Players: { totalPlayers }</span>
+            <Stats />
+            <h1>{ props.title }</h1>
         </header>
     )
 }
