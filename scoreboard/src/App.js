@@ -32,14 +32,34 @@ class App extends Component {
         ]
     }
 
+    // player id counter
 
+    prevPlayerId = 4;
+
+    // setState
+    // prevState
     handleScoreChange = (index,delta) => {
       this.setState( prevState => ({
          score: prevState.players[index].score += delta
       }));
+    }
 
+    handleAddPlayer = (name) => {
+      this.setState( prevState => {
+        return {
+          players: [
+            ...this.state.players,   // spread operators brings in all of the state. new array added at the end of the existing array.
+            {
+              name,  // name: name ( both name matches)
+              score : 0,
+              id: this.prevPlayerId += 1
+            }
+          ]
+        };
+      })
     }
   
+    // filter
     handleRemovePlayer = (id) => {
       this.setState( prevState => {
           return {
@@ -49,6 +69,7 @@ class App extends Component {
     }
   
     render() {
+    // map 
     return (
       <div className="scoreboard">
         <Header 
@@ -56,7 +77,6 @@ class App extends Component {
            players = { this.state.players }
         />
         
-        {/* Players list */}
         {this.state.players.map( (player,index) =>
         <Player 
            name = { player.name } 
@@ -69,7 +89,7 @@ class App extends Component {
         />
         )}
 
-        < AddPlayerForm />
+        < AddPlayerForm  addPlayer = { this.handleAddPlayer }/>
 
       </div>
     );

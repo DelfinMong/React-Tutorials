@@ -6,17 +6,26 @@ class AddPlayerForm extends Component {
         value: ''
     }
 
-    // e point to the target property that point to the input property
+    // e point to the target property that point to the input property.
+    // updating the value of the input.
 
     handleValueChange = ( e ) => {
         this.setState( { value: e.target.value } );
     }
+    
+    // e.preventDefault prevents the application to reload on the browser.
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.addPlayer(this.state.value)
+        this.setState({ value: ''})
+    }
 
+    // handles the onsubmit function as soon the form is submited.
     render () {
         console.log(this.state.value);
         return (
             <div>
-                <form>
+                <form onSubmit = { this.handleSubmit}>  
                     <input
                        type = "text"
                        value = { this.state.value }
