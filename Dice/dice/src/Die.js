@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 
 class Die extends Component {
     render() {
-        return(
-            <div>
-                <h1>DIE!</h1>
-            </div>
-        )
+        // let cls = `fas fa-dice-${this.props.face}`
+        return <i className={`fas fa-dice-${this.props.face}`} />
+           
     }
 }
 

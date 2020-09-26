@@ -1,13 +1,20 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 import Die from './Die'
+import './App.css';
+// import RollDice from './RollDice';
 
-function App() {
+class App extends Component {
+  render() {
+    
   return (
     <div className="App">
-       <Die />
+       <Die face="five"/>
+       <Die face="six"/>
+       <Die face="three"/>
+       <Die face="two"/>
     </div>
-  );
+   );
+  }
 }
 
 export default App;
