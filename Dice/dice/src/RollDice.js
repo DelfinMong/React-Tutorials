@@ -9,12 +9,24 @@ class RollDice extends Component {
     constructor(props){
         super(props);
         this.state = {die1:'one', die2:'one'};
+        this.roll = this.roll.bind(this);
     }
 
     roll(){
         // pick 2 new rolls
+        const newDie1 = this.props.sides [
+                Math.floor(Math.random() * this.props.sides.length)
+        ];
 
+        const newDie2 = this.props.sides [
+            Math.floor(Math.random() * this.props.sides.length)
+        ];
         // set state with new rolls
+
+        this.setState({ 
+               die1: newDie1, 
+               die2: newDie2
+        })
     }
 
     render () {
