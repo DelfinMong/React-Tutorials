@@ -27,7 +27,8 @@ class RollDice extends Component {
 
         this.setState({ 
                die1: newDie1, 
-               die2: newDie2
+               die2: newDie2,
+               rolling: true
         })
     }
 
@@ -38,7 +39,9 @@ class RollDice extends Component {
                     <Die face={this.state.die1}/>
                     <Die face={this.state.die2}/>
                 </div>
-                <button onClick={ this.roll }>Roll Dice!</button>
+                <button onClick={ this.roll }>
+                  {this.state.rolling? "Rolling..." : "Roll Dice!"}
+                </button>
             </div>
         )
     }
