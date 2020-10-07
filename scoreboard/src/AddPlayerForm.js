@@ -24,7 +24,6 @@ class AddPlayerForm extends Component {
     render () {
         console.log(this.state.value);
         return (
-            <div>
                 <form onSubmit = { this.handleSubmit}>  
                     <input
                        type = "text"
@@ -37,7 +36,7 @@ class AddPlayerForm extends Component {
                        value = "Add Player "  
                     />
                 </form>
-            </div>
+           
         )
     }
 }

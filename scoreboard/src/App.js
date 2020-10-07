@@ -3,10 +3,7 @@ import Header from './Header';
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm'
 
-
-
 class App extends Component {
-
     state = {
         players : [
           {
@@ -32,23 +29,43 @@ class App extends Component {
         ]
     }
 
-    // player id counter
-
-    prevPlayerId = 4;
+  // player id counter
+  prevPlayerId = 4;
 
     // setState
     // prevState
-    handleScoreChange = (index,delta) => {
-      this.setState( prevState => ({
-         score: prevState.players[index].score += delta
-      }));
+    // handleScoreChange = (index,delta) => {
+    //   this.setState( prevState => ({
+    //      score: prevState.players[index].score += delta
+    //   }));
+    //   // console.log('index:'+ index,'delta:' + delta)
+    // }
+
+    handleScoreChange = (index, delta) => {
+      this.setState( prevState => {
+        // New 'players' array – a copy of the previous `players` state
+        const updatedPlayers = [ ...prevState.players ];
+        // A copy of the player object we're targeting
+        const updatedPlayer = { ...updatedPlayers[index] };
+  
+        // Update the target player's score
+        updatedPlayer.score += delta;
+        // Update the 'players' array with the target player's latest score
+        updatedPlayers[index] = updatedPlayer;
+  
+        // Update the `players` state without mutating the original state
+        return {
+          players: updatedPlayers
+        };
+      });
     }
 
+    
     handleAddPlayer = (name) => {
       this.setState( prevState => {
         return {
           players: [
-            ...this.state.players,   // spread operators brings in all of the state. new array added at the end of the existing array.
+            ...prevState.players,   // spread operators brings in all of the state. new array added at the end of the existing array.
             {
               name,  // name: name ( both name matches)
               score : 0,
@@ -63,7 +80,7 @@ class App extends Component {
     handleRemovePlayer = (id) => {
       this.setState( prevState => {
           return {
-            Players: prevState.players.filter( p => p.id !== id )
+            players: prevState.players.filter( p => p.id !== id )
         };
       })
     }
@@ -73,10 +90,11 @@ class App extends Component {
     return (
       <div className="scoreboard">
         <Header 
-           title = {'Scoreboard'} 
+           title = 'Scoreboard'
            players = { this.state.players }
         />
         
+        {/* {players list} */}
         {this.state.players.map( (player,index) =>
         <Player 
            name = { player.name } 
@@ -86,6 +104,7 @@ class App extends Component {
            index = { index }
            changeScore = { this.handleScoreChange }
            removePlayer = { this.handleRemovePlayer }
+
         />
         )}
 
