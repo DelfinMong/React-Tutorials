@@ -10,6 +10,7 @@ class CoinContainer extends Component {
         { side: "tails", imgSrc: "https://tinyurl.com/react-coin-tails-jpg" }
      ]
  }
+
   constructor(props){
     super(props);
     this.state = {
@@ -20,15 +21,26 @@ class CoinContainer extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+
   flipCoin(){
     const newCoin = choice(this.props.coins);
+    
+    this.setState(prev => {
+      return {
+        currCoin: newCoin,
+        nFlips: prev.nFlips + 1
+      }
+    })
   }
+
   handleClick(e){
     this.flipCoin()
   }
+
   render() {
   return (
     <div className="CoinContainer">
+      
       <h2>Let's Flip A Coin!</h2>
       <button onClick={this.handleClick}>Flip Me!</button>
       <p>Out of {this.state.nFlips} flips, there have been {this.state.nHeads} heads 
