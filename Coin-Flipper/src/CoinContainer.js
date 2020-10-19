@@ -24,7 +24,6 @@ class CoinContainer extends Component {
 
   flipCoin(){
     const newCoin = choice(this.props.coins);
-    
     this.setState(prev => {
       return {
         currCoin: newCoin,
