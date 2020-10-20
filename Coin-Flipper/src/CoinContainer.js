@@ -27,7 +27,7 @@ class CoinContainer extends Component {
     this.setState(prev => {
       return {
         currCoin: newCoin,
-        nFlips: prev.nFlips + 1
+        nFlips: prev.nFlips + 3
       }
     })
   }
