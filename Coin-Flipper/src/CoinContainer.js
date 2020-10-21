@@ -1,16 +1,14 @@
-import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { choice } from './helper'
-
+import Coin from './Coin'
 
 class CoinContainer extends Component {
  static defaultProps = {
      coins: [
-        { side: "heads", imgSrc: "https://tinyurl.com/react-coin-heads-jpg" },
-        { side: "tails", imgSrc: "https://tinyurl.com/react-coin-tails-jpg" }
+        { side: "heads", imgSrc: "https://tinyurl.com/react-coin-heads-jpg"},
+        { side: "tails", imgSrc: "https://tinyurl.com/react-coin-tails-jpg"}
      ]
  }
-
   constructor(props){
     super(props);
     this.state = {
@@ -21,20 +19,16 @@ class CoinContainer extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
   flipCoin(){
-    const newCoin = choice(this.props.coins);
-    this.setState(prev => {
-      let newState = {
-        ...prev
+    const newCoin = choice(this.props.coins); // coins[0] or coins[1] { side: " - ", imgSrc: " - "},
+    this.setState(st => {
+      return {
         currCoin: newCoin,
-        nFlips: prev.nFlips + 1
+        nFlips: st.nFlips + 1,
+        nHeads: st.nHeads + (newCoin.side === 'heads' ? 1 : 0),  // this.props.coins[ 0 ] or this.props.coins[ 1 ]
+        nTails: st.nTails + (newCoin.side === 'tails' ? 1 : 0)   // this.props.coins[ 0 ] or this.props.coins[ 1 ]
       }
-      if(newCoin.side === 'heads'){
-        // add on to nheads
-      }
-      return ;
-    });
+    })
   }
 
   handleClick(e){
@@ -44,11 +38,10 @@ class CoinContainer extends Component {
   render() {
   return (
     <div className="CoinContainer">
-      
       <h2>Let's Flip A Coin!</h2>
       <button onClick={this.handleClick}>Flip Me!</button>
-      <p>Out of {this.state.nFlips} flips, there have been {this.state.nHeads} heads 
-        and {this.state.nTails} tails.</p>
+      { this.state.currCoin && <Coin info={ this.state.currCoin } />}
+      <p>Out of {this.state.nFlips} flips, there have been {this.state.nHeads} heads and {this.state.nTails} tails.</p>
     </div>
   );
 }
