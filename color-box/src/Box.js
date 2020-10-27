@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Box.css';
 
 
 class Box extends Component {
@@ -19,3 +20,5 @@ class Box extends Component {
         )
     }
 }
+
+export default Box
